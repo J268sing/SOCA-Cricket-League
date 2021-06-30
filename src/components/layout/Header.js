@@ -103,20 +103,29 @@ const Header = ({
                 className={
                   classNames(
                     'header-nav',
-                    isActive && 'is-active'
+                    isActive && 'is-active','header-nav-center'
                   )}>
-                <div className="header-nav-inner">
+                <div className="header-nav-inner ,'header-nav-center'">
                 <ul className={
                     classNames(
                       'list-reset text-xs',
                       navPosition && `header-nav-${navPosition}`
                     )}>
                     <li>
-                      <Link to="#0" onClick={closeMenu}>Documentation</Link>
+                      <Link to="#0" onClick={closeMenu}>Stats</Link>
+                    </li> 
+                    <li>
+                      <Link to="/Home" onClick={closeMenu}>Teams</Link>
                     </li>
-                    
+                    <li>
+                      <Link to="#0" onClick={closeMenu}>News</Link>
+                    </li>
+                    <li>
+                      <Link to="#0" onClick={closeMenu}>About</Link>
+                    </li>
+
                   </ul>
-                  {!hideSignin &&
+                  {hideSignin &&
                     <ul
                       className="list-reset header-nav-right"
                     >
