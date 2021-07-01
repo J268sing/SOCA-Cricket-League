@@ -3,6 +3,10 @@ import classNames from 'classnames';
 import { SectionTilesProps } from '../utils/SectionProps';
 //import SectionHeader from '../components/sections/partials/SectionHeader';
 import Testimonial from '../components/elements/Testimonial'
+import ListView from '../components/elements/ListView';
+import Image from '../components/elements/Image'
+import sectionHeader from '../components/sections/partials/SectionHeader'
+import SectionHeader from '../components/sections/partials/SectionHeader';
 const propTypes = {
   ...SectionTilesProps.types
 }
@@ -11,7 +15,7 @@ const defaultProps = {
   ...SectionTilesProps.defaults
 }
 
-const Teams = ({
+const TeamList = ({
   className,
   topOuterDivider,
   bottomOuterDivider,
@@ -22,7 +26,7 @@ const Teams = ({
   pushLeft,
   ...props
 }) => {
-
+ 
 
   const teamInfo = [
     {name: 'Huskies Cricket', imag: 'dhruv'},
@@ -62,8 +66,8 @@ const Teams = ({
   );
 
   const sectionHeader = {
-    title: 'Customer teamss',
-    paragraph: 'Vitae aliquet nec ullamcorper sit amet risus nullam eget felis semper quis lectus nulla at volutpat diam ut venenatis tellus—in ornare.'
+    title: 'Huskies Cricket',
+    paragraph: 'We the wolves of cricket.'
   };
 
 
@@ -71,17 +75,22 @@ const Teams = ({
 for (var i = 0; i < 14; i++) {
     // note: we are adding a key prop here to allow react to uniquely identify each
     // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
-    rows.push(<Testimonial name={teamInfo[i].name} imag={teamInfo[i].imag}  />);
+    rows.push(<ListView name={teamInfo[i].name} imag={teamInfo[i].imag} />);
 }
  
+
+
   return (
     <section
       {...props}
       className={outerClasses}
     >
+
+
+<SectionHeader data={sectionHeader} className="center-content" />
       <div className="container">
         <div className={innerClasses}>
-          <div className={tilesClasses}>
+          <div >
 
 
 
@@ -101,7 +110,7 @@ for (var i = 0; i < 14; i++) {
   );
 }
 
-Teams.propTypes = propTypes;
-Teams.defaultProps = defaultProps;
+TeamList.propTypes = propTypes;
+TeamList.defaultProps = defaultProps;
 
-export default Teams;
+export default TeamList;

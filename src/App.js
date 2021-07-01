@@ -4,11 +4,21 @@ import AppRoute from './utils/AppRoute';
 import ScrollReveal from './utils/ScrollReveal';
 import ReactGA from 'react-ga';
 
+
+//Route
+import { Route } from 'react-router-dom';
+
 // Layouts
 import LayoutDefault from './layouts/LayoutDefault';
 
 // Views 
 import Home from './views/Home';
+//import Testimonial from './views/Testimonial';
+import Stats from './views/Stats';
+import News from './views/News';
+import About from './views/About';
+import Teams from './views/Teams';
+import TeamList from './views/TeamList';
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -35,11 +45,16 @@ const App = () => {
     <ScrollReveal
       ref={childRef}
       children={() => (
-        <Switch>
+        <Switch> 
           <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
-        </Switch>
+          <AppRoute exact path="/Teams" component={Teams} layout={LayoutDefault} />
+          <AppRoute exact path="/Stats" component={Stats} layout={LayoutDefault} />
+          <AppRoute exact path="/About" component={About} layout={LayoutDefault} />
+          <AppRoute exact path="/News" component={News} layout={LayoutDefault} />
+          <AppRoute exact path="/Teams/TeamList" component={TeamList} layout={LayoutDefault} />
+        </Switch> 
       )} />
   );
-}
+} 
 
-export default App;
+export default App; 

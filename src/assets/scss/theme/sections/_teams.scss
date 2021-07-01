@@ -1,11 +1,11 @@
-.testimonial {
+.teams {
 
 	.tiles-item-inner {
 		background: get-color(dark, 2);		
 	}
 }
 
-.testimonial-item-content {
+.teams-item-content {
     position: relative;
 
     &::before {
@@ -20,7 +20,7 @@
     }		
 }
 
-.testimonial-item-footer {
+.teams-item-footer {
     font-weight: 600;
     padding-top: 20px;
 
@@ -32,7 +32,7 @@
     }
 }
 
-.testimonial-item-link {
+.teams-item-link {
 	color: get-color(secondary, 3);
 
 	a {
