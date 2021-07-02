@@ -34,7 +34,7 @@ const Teams = ({
     {name: 'Conestoga CC', imag: 'dhruv'},
     {name: 'Victoria CC', imag: 'dhruv'},
     {name: 'Gladiator CC', imag: 'dhruv'},
-    {name: 'kitchener Raptors', imag: 'dhruv'},
+    {name: 'Kitchener Raptors', imag: 'dhruv'},
     {name: 'Cambridge United', imag: 'dhruv'},
     {name: 'Cambridge CC', imag: 'dhruv'},
     {name: 'Proteas CC', imag: 'dhruv'},
@@ -73,7 +73,7 @@ for (var i = 0; i < 14; i++) {
     // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
     rows.push(<Testimonial name={teamInfo[i].name} imag={teamInfo[i].imag}  />);
 }
- 
+  
   return (
     <section
       {...props}

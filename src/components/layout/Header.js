@@ -128,7 +128,8 @@ const Header = ({
                     <ul 
                       className="list-reset header-nav-right"
                     >
-                      <li >Sponsors
+                      <li >
+                      <Link to="/Sponsors" onClick={closeMenu}>Sponsors</Link>
                       </li>
                     </ul>}
                 </div>

@@ -2,7 +2,7 @@ import React ,{ useState, useRef, useEffect } from 'react';
 //import Teams from '../components/sections/Teams';
 //import Cta from '../components/sections/Cta';
 import Image from '../elements/Image'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 const Testimonial = (props) => {
@@ -15,6 +15,7 @@ const Testimonial = (props) => {
     nav.current && (nav.current.style.maxHeight = null);
     setIsactive(false);
   }
+  const linkTo = "/Teams/"
     return (
       <>
 
@@ -32,7 +33,7 @@ const Testimonial = (props) => {
                   <span className="teams-item-name text-color-high">{props.name}</span>
                   <span className="text-color-low"> / </span>
                   <span className="teams-item-link">
-                      <Link to="/Teams/TeamList" onClick={closeMenu}>Team List</Link>
+                      <Link to={linkTo + props.name.replace(/\s/g, '')} onClick={closeMenu}>Team List</Link>
                   </span>
                 </div>
               </div>

@@ -15,7 +15,7 @@ const ListView = (props) => {
                   <span className="teams-item-name text-color-high">{props.name}</span>
                   <span className="text-color-low"> / </span>
                   <span className="teams-item-link">
-                    Team List
+                    {props.role}
                   </span>
                 </div>
               </div>

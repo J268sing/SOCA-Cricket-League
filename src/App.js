@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { useLocation, Switch } from 'react-router-dom';
+import { useLocation, Switch} from 'react-router-dom';
 import AppRoute from './utils/AppRoute';
 import ScrollReveal from './utils/ScrollReveal';
 import ReactGA from 'react-ga';
@@ -19,6 +19,8 @@ import News from './views/News';
 import About from './views/About';
 import Teams from './views/Teams';
 import TeamList from './views/TeamList';
+import Sponsors from './views/Sponsors';
+
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -41,6 +43,9 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
 
+
+
+
   return (
     <ScrollReveal
       ref={childRef}
@@ -51,7 +56,8 @@ const App = () => {
           <AppRoute exact path="/Stats" component={Stats} layout={LayoutDefault} />
           <AppRoute exact path="/About" component={About} layout={LayoutDefault} />
           <AppRoute exact path="/News" component={News} layout={LayoutDefault} />
-          <AppRoute exact path="/Teams/TeamList" component={TeamList} layout={LayoutDefault} />
+          <AppRoute exact path="/Teams/:teamId" component={TeamList} layout={LayoutDefault} />
+          <AppRoute exact path="/Sponsors" component={Sponsors} layout={LayoutDefault} />
         </Switch> 
       )} />
   );
