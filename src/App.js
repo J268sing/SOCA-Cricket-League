@@ -15,6 +15,7 @@ import LayoutDefault from './layouts/LayoutDefault';
 import Home from './views/Home';
 //import Testimonial from './views/Testimonial';
 import Stats from './views/Stats';
+import ScoreCard from './views/ScoreCard';
 import News from './views/News';
 import About from './views/About';
 import Teams from './views/Teams';
@@ -58,9 +59,10 @@ const App = () => {
           <AppRoute exact path="/News" component={News} layout={LayoutDefault} />
           <AppRoute exact path="/Teams/:teamId" component={TeamList} layout={LayoutDefault} />
           <AppRoute exact path="/Sponsors" component={Sponsors} layout={LayoutDefault} />
+          <AppRoute exact path="/Stats/ScoreCard" component={ScoreCard} layout={LayoutDefault} />
         </Switch> 
       )} />
   );
-} 
+}
 
 export default App; 

@@ -61,14 +61,13 @@ const Hero = ({
         <div className={innerClasses}>
           <div className="hero-content">
             <h1 className="mt-0 mb-16 reveal-from-bottom" data-reveal-delay="200">
-              Official Website of <span className="text-color-primary">SOCA</span>
+              <span className="text-color-primary">SOCA</span>
             </h1>
             <div className="container-xs">
-              <p className="m-0 mb-32 reveal-from-bottom" data-reveal-delay="400">
+              <p className="text-xs m-0   reveal-from-bottom" data-reveal-delay="400">
               The Southern Ontario Cricket Association (S.O.C.A) League started around the time of World-War I. Immigrants from the Caribbean region formed most of the clubs. As time went by immigrants from South Asia such as countries like India, Pakistan and Sri Lanka were slowly settling down in this tri-city area.  
                  </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
-                
               </div>
             </div>
           </div>
