@@ -22,7 +22,6 @@ import Teams from './views/Teams';
 import TeamList from './views/TeamList';
 import Sponsors from './views/Sponsors';
 
-
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
 

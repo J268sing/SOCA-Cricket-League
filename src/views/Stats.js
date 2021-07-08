@@ -61,6 +61,8 @@ const Stats = ({
         <div className={innerClasses}>
           <div>
 
+
+<PointsTableItem></PointsTableItem> 
          
           <MatchList className="mb-32 has-top-divider"></MatchList>
           <Divider ></Divider>

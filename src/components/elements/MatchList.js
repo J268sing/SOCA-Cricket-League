@@ -10,6 +10,7 @@ const MatchList = () => {
       <LogoMatch></LogoMatch>
       <MatchSummaryListView ></MatchSummaryListView>
       <MatchResult></MatchResult>
+      
     </div>
     </div>
   ); 

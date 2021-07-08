@@ -1,4 +1,3 @@
-
 import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../utils/SectionProps';
@@ -27,7 +26,7 @@ const News = ({
   
     
   const articles = [
-    {title: 'Huskies Cricket', body: 'William Shakespeare, often called Englands national poet, is considered the greatest dramatist of all time. His works are loved throughout the world, but Shakespeares personal life is shrouded in mystery. jashandoiornrion',
+    {title: 'Huskies Cricket is one of the new teams playing in SOCA in season of 2020. ', body: 'William Shakespeare, often called Englands national poet, is considered the greatest dramatist of all time. His works are loved throughout the world, but Shakespeares personal life is shrouded in mystery. jashandoiornrion',
      author: 'Bulle Shah / 14 July 2021'},
      {title: 'Bulle Dog', body: 'William Shakespeare, often called Englands national poet, is considered the greatest dramatist of all time. His works are loved throughout the world, but Shakespeares personal life is shrouded in mystery. jashandoiornrion',
      author: 'Bulle Shah / 14 July 2021'},
@@ -63,8 +62,6 @@ const News = ({
 
   var rows = [];
 for (var i = 0; i < 1; i++) {
-    // note: we are adding a key prop here to allow react to uniquely identify each
-    // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
     preview = articles[i].body.substring(0,210)
     rows.push(<NewsView title={articles[i].title} preview={preview} author={articles[i].author}  />);
 }
@@ -74,20 +71,11 @@ for (var i = 0; i < 1; i++) {
       {...props}
       className={outerClasses}
     >
-      <div className="container">
-        <div className={innerClasses}>
+      <div className="container" >
+        <div className={innerClasses }>
           <div className={tilesClasses}>
 
-
-
-
-
-           
-
        {rows}
-
-
-
 
           </div>
         </div>

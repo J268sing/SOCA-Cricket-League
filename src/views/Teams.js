@@ -104,4 +104,4 @@ for (var i = 0; i < 14; i++) {
 Teams.propTypes = propTypes;
 Teams.defaultProps = defaultProps;
 
-export default Teams;
+export default Teams; 

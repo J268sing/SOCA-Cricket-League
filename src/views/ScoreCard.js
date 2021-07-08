@@ -10,7 +10,7 @@ const propTypes = {
 
 const defaultProps = {
     ...SectionProps.defaults
-}
+} 
 
 const ScoreCard = ({
     className,

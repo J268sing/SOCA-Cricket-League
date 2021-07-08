@@ -1,25 +1,22 @@
+/* eslint-disable no-console */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
-import { AutoSizer, Column, Table } from 'react-virtualized';
-import { red } from '@material-ui/core/colors';
+import { AutoSizer, Column, SortDirection, Table } from 'react-virtualized';
 
-const styles = (theme) => ({
+const styles = theme => ({
+  table: {
+    fontFamily: theme.typography.fontFamily,
+  },
   flexContainer: {
     display: 'flex',
     alignItems: 'center',
     boxSizing: 'border-box',
-  },
-  table: {
-    // temporary right-to-left patch, waiting for
-    // https://github.com/bvaughn/react-virtualized/issues/454
-    '& .ReactVirtualized__Table__headerRow': {
-      flip: false,
-      paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
-    },
   },
   tableRow: {
     cursor: 'pointer',
@@ -38,25 +35,20 @@ const styles = (theme) => ({
 });
 
 class PointsTable extends React.PureComponent {
-  static defaultProps = {
-    headerHeight: 48,
-    rowHeight: 48,
-  };
-
   getRowClassName = ({ index }) => {
-    const { classes, onRowClick } = this.props;
+    const { classes, rowClassName, onRowClick } = this.props;
 
-    return clsx(classes.tableRow, classes.flexContainer, {
+    return classNames(classes.tableRow, classes.flexContainer, rowClassName, {
       [classes.tableRowHover]: index !== -1 && onRowClick != null,
     });
   };
 
-  cellRenderer = ({ cellData, columnIndex }) => {
+  cellRenderer = ({ cellData, columnIndex = null }) => {
     const { columns, classes, rowHeight, onRowClick } = this.props;
     return (
       <TableCell
         component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, {
+        className={classNames(classes.tableCell, classes.flexContainer, {
           [classes.noClick]: onRowClick == null,
         })}
         variant="body"
@@ -68,51 +60,70 @@ class PointsTable extends React.PureComponent {
     );
   };
 
-  headerRenderer = ({ label, columnIndex }) => {
-    const { headerHeight, columns, classes } = this.props;
+  headerRenderer = ({ label, columnIndex, dataKey, sortBy, sortDirection }) => {
+    const { headerHeight, columns, classes, sort } = this.props;
+    const direction = {
+      [SortDirection.ASC]: 'asc',
+      [SortDirection.DESC]: 'desc',
+    };
+
+    const inner =
+      !columns[columnIndex].disableSort && sort != null ? (
+        <TableSortLabel active={dataKey === sortBy} direction={direction[sortDirection]}>
+          {label}
+        </TableSortLabel>
+      ) : (
+        label
+      );
 
     return (
       <TableCell
         component="div"
-        className={clsx(classes.tableCell, classes.flexContainer, classes.noClick)}
+        className={classNames(classes.tableCell, classes.flexContainer, classes.noClick)}
         variant="head"
         style={{ height: headerHeight }}
         align={columns[columnIndex].numeric || false ? 'right' : 'left'}
       >
-        <span>{label}</span>
+        {inner}
       </TableCell>
     );
   };
 
   render() {
-    const { classes, columns, rowHeight, headerHeight, ...tableProps } = this.props;
+    const { classes, columns, ...tableProps } = this.props;
     return (
       <AutoSizer>
         {({ height, width }) => (
           <Table
+            className={classes.table}
             height={height}
             width={width}
-            rowHeight={rowHeight}
-            gridStyle={{
-              direction: 'inherit',
-            }}
-            headerHeight={headerHeight}
-            className={classes.table}
             {...tableProps}
             rowClassName={this.getRowClassName}
           >
-            {columns.map(({ dataKey, ...other }, index) => {
+            {columns.map(({ cellContentRenderer = null, className, dataKey, ...other }, index) => {
+              let renderer;
+              if (cellContentRenderer != null) {
+                renderer = cellRendererProps =>
+                  this.cellRenderer({
+                    cellData: cellContentRenderer(cellRendererProps),
+                    columnIndex: index,
+                  });
+              } else {
+                renderer = this.cellRenderer;
+              }
+
               return (
                 <Column
                   key={dataKey}
-                  headerRenderer={(headerProps) =>
+                  headerRenderer={headerProps =>
                     this.headerRenderer({
                       ...headerProps,
                       columnIndex: index,
                     })
                   }
-                  className={classes.flexContainer}
-                  cellRenderer={this.cellRenderer}
+                  className={classNames(classes.flexContainer, className)}
+                  cellRenderer={renderer}
                   dataKey={dataKey}
                   {...other}
                 />
@@ -129,81 +140,82 @@ PointsTable.propTypes = {
   classes: PropTypes.object.isRequired,
   columns: PropTypes.arrayOf(
     PropTypes.shape({
+      cellContentRenderer: PropTypes.func,
       dataKey: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      numeric: PropTypes.bool,
       width: PropTypes.number.isRequired,
     }),
   ).isRequired,
   headerHeight: PropTypes.number,
   onRowClick: PropTypes.func,
-  rowHeight: PropTypes.number,
+  rowClassName: PropTypes.string,
+  rowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
+  sort: PropTypes.func,
 };
 
-const VirtualizedTable = withStyles(styles)(PointsTable);
+PointsTable.defaultProps = {
+  headerHeight: 56,
+  rowHeight: 56,
+};
 
-// ---
+const WrappedVirtualizedTable = withStyles(styles)(PointsTable);
 
-const sample = [
-  ['Cambridge Rising Stars', 159, 6.0, 24, 4.0,7.00],
+const data = [
+  ['Frozen yoghuart', 159, 6.0, 24, 4.0],
   ['Ice cream sandwich', 237, 9.0, 37, 4.3],
   ['Eclair', 262, 16.0, 24, 6.0],
   ['Cupcake', 305, 3.7, 67, 4.3],
   ['Gingerbread', 356, 16.0, 49, 3.9],
 ];
 
-function createData(id, team, pld, win, loss, points, rr) {
-  return { id, team, pld, win, loss, points,rr };
+let id = 0;
+function createData(dessert, calories, fat, carbs, protein) {
+  id += 1;
+  return { id, dessert, calories, fat, carbs, protein };
 }
 
 const rows = [];
 
-for (let i = 0; i < 14; i += 1) {
-  const randomSelection = sample[Math.floor(Math.random() * sample.length)];
-  rows.push(createData(i, ...randomSelection));
+for (let i = 0; i < 200; i += 1) {
+  const randomSelection = data[Math.floor(Math.random() * data.length)];
+  rows.push(createData(...randomSelection));
 }
 
-export default function ReactVirtualizedTable() {
+function ReactVirtualizedTable() {
   return (
-    <Paper style={{ height: 400, width: '100%',backgroundColor:'red' }}>
-      <VirtualizedTable
+    <Paper style={{ height: 400, width: '100%' }}>
+      <WrappedVirtualizedTable
         rowCount={rows.length}
         rowGetter={({ index }) => rows[index]}
+        onRowClick={event => console.log(event)}
         columns={[
           {
             width: 200,
-            label: 'Team',
-            dataKey: 'team',
+            flexGrow: 1.0,
+            label: 'Dessert',
+            dataKey: 'dessert',
           },
           {
-            width: 60,
-            label: 'Plhhhd',
-            dataKey: 'pld',
-            numeric: true,
-            backgroundColor: 'red'
-          },
-          {
-            width: 60,
-            label: 'Win',
-            dataKey: 'win',
+            width: 120,
+            label: 'Calories (g)',
+            dataKey: 'calories',
             numeric: true,
           },
           {
-            width: 60,
-            label: 'Loss',
-            dataKey: 'loss',
+            width: 120,
+            label: 'Fat (g)',
+            dataKey: 'fat',
             numeric: true,
           },
           {
-            width: 60,
-            label: 'Points',
-            dataKey: 'points',
+            width: 120,
+            label: 'Carbs (g)',
+            dataKey: 'carbs',
             numeric: true,
           },
           {
-            width: 60,
-            label: 'Rr',
-            dataKey: 'rr',
+            width: 120,
+            label: 'Protein (g)',
+            dataKey: 'protein',
             numeric: true,
           },
         ]}
@@ -211,3 +223,5 @@ export default function ReactVirtualizedTable() {
     </Paper>
   );
 }
+
+export default ReactVirtualizedTable;

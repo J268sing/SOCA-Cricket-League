@@ -49,7 +49,12 @@ const Sponsors = ({
     >
 
 
+
+
+
 <SectionHeader data={sectionHeader} />
+
+
 
     </section>
   );
@@ -58,4 +63,4 @@ const Sponsors = ({
 Sponsors.propTypes = propTypes;
 Sponsors.defaultProps = defaultProps;
 
-export default Sponsors;
+export default Sponsors; 

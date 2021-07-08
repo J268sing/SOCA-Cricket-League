@@ -1,10 +1,9 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 //import Teams from '../components/sections/Teams';
 //import Cta from '../components/sections/Cta';
 import Image from '../elements/Image'
 import { Link, useParams } from 'react-router-dom';
- //import { black } from 'color-name';
+
 
 const NewsView = (props) => {
 
@@ -16,38 +15,37 @@ const NewsView = (props) => {
         nav.current && (nav.current.style.maxHeight = null);
         setIsactive(false);
     }
-
-
-    const linkTo = "/Article/"
+    const linkTo = "/Teams/"
     return (
-        <div className=" mb-32 reveal-from-left tiles-item-inner-news" data-reveal-delay="200"   >
-           
+        <>
+            <div className="tiles-item-news to-flex reveal-from-left" data-reveal-delay="200" >
+                <div >
                     <Image
-                        className=""
-                        src={require('./../../assets/images/dhruv.jpg')}
+                        className="has-shadow"
+                        className="to-fill-image"
+                        src={require('./../../assets/images/sharma.jpg')}
                         alt="Unable to load image"
-                        width={100}
-                        height={110} />
-                 
-                <div classname=" imageFit" >
-                    <div className="  imageFit text-color-high" >
-                        <p> {props.title} </p>
-                    </div>
-                    <div className=" text-xs  imageFit " >
-                        <p className=""> {props.preview} <span className="teams-item-link">
-                            <Link to="/Stats" onClick={closeMenu}>... read more</Link>
-                        </span></p>
-                    </div>
-                    <div className="  text-xs    " >
-                        <span className="text-color-high">{props.author}</span>
-                    </div>
-
-                   
+                        width={400}
+                        height={400} />
                 </div>
 
+                <div className="text-alignment tiles-item-inner-news">
+                    <div className="teams-item-footer text-color-high to-fill-text-1" >
+                        <p> {props.title} </p>
+                    </div>
+                    <div className=" text-xs has-top-divider to-fill-text-2" >
+                        <p className="has-top-divider news-preview-padding"> {props.preview} <span className="teams-item-link">
+                            <Link to="/Stats" onClick={closeMenu}>... read more</Link>
+                        </span></p>
+                    </div >
+
+                    <div className="teams-item-footer text-xs to-fill-text-3">
+                        <span className="teams-item-name text-color-high">{props.author}</span>
+                    </div>
+
+                </div>
             </div>
-
-
+        </>
     );
 }
 
