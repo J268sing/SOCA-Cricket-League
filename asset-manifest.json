@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/SOCA-Cricket-League/static/css/main.a9732d3f.chunk.css",
+    "main.js": "/SOCA-Cricket-League/static/js/main.bd21ca22.chunk.js",
+    "main.js.map": "/SOCA-Cricket-League/static/js/main.bd21ca22.chunk.js.map",
+    "runtime-main.js": "/SOCA-Cricket-League/static/js/runtime-main.b1815fb4.js",
+    "runtime-main.js.map": "/SOCA-Cricket-League/static/js/runtime-main.b1815fb4.js.map",
+    "static/js/2.6c0e02aa.chunk.js": "/SOCA-Cricket-League/static/js/2.6c0e02aa.chunk.js",
+    "static/js/2.6c0e02aa.chunk.js.map": "/SOCA-Cricket-League/static/js/2.6c0e02aa.chunk.js.map",
+    "index.html": "/SOCA-Cricket-League/index.html",
+    "precache-manifest.3f0b5074c1a3d688bb1e1661b43f1327.js": "/SOCA-Cricket-League/precache-manifest.3f0b5074c1a3d688bb1e1661b43f1327.js",
+    "service-worker.js": "/SOCA-Cricket-League/service-worker.js",
+    "static/css/main.a9732d3f.chunk.css.map": "/SOCA-Cricket-League/static/css/main.a9732d3f.chunk.css.map",
+    "static/js/2.6c0e02aa.chunk.js.LICENSE.txt": "/SOCA-Cricket-League/static/js/2.6c0e02aa.chunk.js.LICENSE.txt",
+    "static/media/style.scss": "/SOCA-Cricket-League/static/media/illustration-section-02.63d0555d.svg",
+    "static/media/dhruv.jpg": "/SOCA-Cricket-League/static/media/dhruv.a2fd6288.jpg",
+    "static/media/feature-tile-icon-01.svg": "/SOCA-Cricket-League/static/media/feature-tile-icon-01.0f9928d7.svg",
+    "static/media/feature-tile-icon-02.svg": "/SOCA-Cricket-League/static/media/feature-tile-icon-02.bd39f304.svg",
+    "static/media/feature-tile-icon-03.svg": "/SOCA-Cricket-League/static/media/feature-tile-icon-03.66f37ba5.svg",
+    "static/media/feature-tile-icon-04.svg": "/SOCA-Cricket-League/static/media/feature-tile-icon-04.836acd10.svg",
+    "static/media/feature-tile-icon-05.svg": "/SOCA-Cricket-League/static/media/feature-tile-icon-05.fa9ba00b.svg",
+    "static/media/feature-tile-icon-06.svg": "/SOCA-Cricket-League/static/media/feature-tile-icon-06.6a177696.svg",
+    "static/media/features-split-image-01.png": "/SOCA-Cricket-League/static/media/features-split-image-01.d9cb99ce.png",
+    "static/media/logo.svg": "/SOCA-Cricket-League/static/media/logo.2810a88b.svg",
+    "static/media/scorecard.jpg": "/SOCA-Cricket-League/static/media/scorecard.bbf2388f.jpg",
+    "static/media/sharma.jpg": "/SOCA-Cricket-League/static/media/sharma.f9233bbf.jpg",
+    "static/media/sunrisephoto.jpg": "/SOCA-Cricket-League/static/media/sunrisephoto.e776a834.jpg",
+    "static/media/video-placeholder.jpg": "/SOCA-Cricket-League/static/media/video-placeholder.a622fc5d.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b1815fb4.js",
+    "static/js/2.6c0e02aa.chunk.js",
+    "static/css/main.a9732d3f.chunk.css",
+    "static/js/main.bd21ca22.chunk.js"
+  ]
+}
